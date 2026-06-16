@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumeet Elko - Depot Staff Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#0B0F1A;color:#E2E8F0;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0B0F1A;color:#E2E8F0;min-height:100vh;-webkit-tap-highlight-color:transparent}
 :root{
   --bg0:#0B0F1A;--bg1:#111827;--bg2:#1A2235;--bg3:#1E2D45;
   --accent:#3B82F6;--accent2:#6366F1;--accent3:#10B981;
@@ -15,140 +16,138 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0B0F1A;color:#E2E8F0
   --border:#1E2D45;--border2:#2D3F5C;
   --ward:#3B82F6;--unit:#10B981;--sup:#8B5CF6;--asst:#F59E0B;--sr:#EC4899;
 }
-.wrap{max-width:980px;margin:0 auto;padding:16px}
+.wrap{max-width:980px;margin:0 auto;padding:12px}
+
 /* TOP BAR */
-.topbar{background:linear-gradient(135deg,#1A2235 0%,#111827 100%);border:1px solid var(--border2);border-radius:16px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.logo-wrap{display:flex;align-items:center;gap:12px}
-.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#3B82F6,#6366F1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.logo-text h1{font-size:18px;font-weight:700;color:var(--text1)}
-.logo-text p{font-size:12px;color:var(--text2);margin-top:1px}
-.topbar-right{display:flex;align-items:center;gap:8px}
+.topbar{background:linear-gradient(135deg,#1A2235 0%,#111827 100%);border:1px solid var(--border2);border-radius:16px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:between;gap:12px}
+.logo-wrap{display:flex;align-items:center;gap:12px;flex:1}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#3B82F6,#6366F1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.logo-text h1{font-size:16px;font-weight:700;color:var(--text1);letter-spacing:-0.02em}
+.logo-text p{font-size:11px;color:var(--text2);margin-top:2px}
+.topbar-right{display:flex;align-items:center;gap:6px;background:rgba(16,185,129,0.1);padding:6px 12px;border-radius:20px;border:1px solid rgba(16,185,129,0.2)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#10B981;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
-.live-label{font-size:12px;color:#10B981;font-weight:600}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.live-label{font-size:11px;color:#10B981;font-weight:700;letter-spacing:0.05em}
+
 /* VIP STRIP */
-.vip-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
-.vip-card{background:linear-gradient(135deg,#1A2235,#111827);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
-.vip-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.vip-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+@media(min-width:640px){.vip-strip{grid-template-columns:repeat(4,1fr)}}
+.vip-card{background:linear-gradient(135deg,#1A2235,#111827);border:1px solid var(--border2);border-radius:14px;padding:12px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:between}
+.vip-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .vip-card.sr::before{background:linear-gradient(90deg,#EC4899,#F97316)}
 .vip-card.azm::before{background:linear-gradient(90deg,#8B5CF6,#6366F1)}
 .vip-card.amo::before{background:linear-gradient(90deg,#3B82F6,#06B6D4)}
 .vip-card.eo::before{background:linear-gradient(90deg,#10B981,#059669)}
-.vip-role{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.vip-role{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
 .vip-card.sr .vip-role{color:#EC4899}
 .vip-card.azm .vip-role{color:#8B5CF6}
 .vip-card.amo .vip-role{color:#3B82F6}
 .vip-card.eo .vip-role{color:#10B981}
-.vip-name{font-size:13px;font-weight:600;color:var(--text1);margin-bottom:8px;line-height:1.3}
-.vip-actions{display:flex;gap:6px}
-.vip-btn{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;border:none;transition:all .15s}
-.vip-btn.call{background:rgba(16,185,129,.15);color:#10B981;border:1px solid rgba(16,185,129,.3)}
-.vip-btn.call:hover{background:rgba(16,185,129,.25)}
-.vip-btn.wa{background:rgba(37,211,102,.15);color:#25D366;border:1px solid rgba(37,211,102,.3)}
-.vip-btn.wa:hover{background:rgba(37,211,102,.25)}
+.vip-name{font-size:12px;font-weight:700;color:var(--text1);margin-bottom:8px;line-height:1.2;min-height:28px}
+.vip-actions{display:flex;gap:4px;margin-top:auto}
+.vip-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .15s}
+.vip-btn.call{background:rgba(16,185,129,.12);color:#10B981;border:1px solid rgba(16,185,129,.25)}
+.vip-btn.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.25)}
+
 /* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-.stat-box{background:#111827;border:1px solid var(--border2);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
-.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
-.stat-box:nth-child(1)::after{background:linear-gradient(90deg,#3B82F6,#6366F1)}
-.stat-box:nth-child(2)::after{background:linear-gradient(90deg,#10B981,#059669)}
-.stat-box:nth-child(3)::after{background:linear-gradient(90deg,#8B5CF6,#A78BFA)}
-.stat-box:nth-child(4)::after{background:linear-gradient(90deg,#F59E0B,#FBBF24)}
-.stat-num{font-size:28px;font-weight:700;color:var(--text1)}
-.stat-lbl{font-size:11px;color:var(--text2);margin-top:2px;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+@media(min-width:640px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stat-box{background:#111827;border:1px solid var(--border2);border-radius:12px;padding:12px;position:relative}
+.stat-num{font-size:22px;font-weight:700;color:var(--text1)}
+.stat-lbl{font-size:10px;color:var(--text2);margin-top:1px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+
 /* CONTROLS */
-.controls{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
-.search-box{flex:1;min-width:200px;position:relative}
-.search-box input{width:100%;background:#111827;border:1px solid var(--border2);border-radius:10px;padding:9px 14px 9px 36px;font-size:13px;color:var(--text1);outline:none;font-family:inherit}
-.search-box input:focus{border-color:var(--accent)}
-.search-box input::placeholder{color:var(--text3)}
-.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.5}
-.seg{display:flex;background:#111827;border:1px solid var(--border2);border-radius:10px;overflow:hidden}
-.seg-btn{padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text2);font-family:inherit;transition:all .15s}
-.seg-btn.active{background:var(--accent);color:#fff}
-/* WARD TABS */
-.ward-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.wtab{padding:7px 16px;border-radius:99px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:inherit;transition:all .15s;letter-spacing:.03em}
-.wtab:hover{border-color:var(--accent);color:var(--text1)}
-.wtab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.controls{display:flex;gap:8px;margin-bottom:12px;position:sticky;top:0;z-index:100;background:#0B0F1A;padding:4px 0}
+.search-box{flex:1;position:relative}
+.search-box input{width:100%;background:#111827;border:1px solid var(--border2);border-radius:12px;padding:12px 14px 12px 40px;font-size:14px;color:var(--text1);outline:none;font-family:inherit;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.search-box input:focus{border-color:var(--accent);background:#161F32}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.6}
+
+/* HORIZONTAL SCROLL FOR TABS */
+.scroll-tabs-wrap{overflow-x:auto;scrollbar-width:none;margin-bottom:12px;margin-left:-12px;margin-right:-12px;padding:0 12px}
+.scroll-tabs-wrap::-webkit-scrollbar{display:none}
+.ward-row{display:flex;gap:6px;width:max-content;padding-bottom:2px}
+.wtab{padding:10px 18px;border-radius:24px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid var(--border2);background:#111827;color:var(--text2);font-family:inherit;transition:all .15s;white-space:nowrap}
+.wtab.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(59,130,246,0.3)}
+
 /* WARD PANEL */
 .ward-panel{display:none}
 .ward-panel.active{display:block}
-.ward-info-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.ward-title{font-size:20px;font-weight:700;color:var(--text1)}
-.ward-count-badge{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#93C5FD;border-radius:8px;padding:3px 10px;font-size:12px;font-weight:700}
+.ward-info-bar{display:flex;align-items:center;justify-content:between;margin-bottom:12px;padding:2px}
+.ward-title{font-size:18px;font-weight:700;color:var(--text1)}
+.ward-count-badge{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:#93C5FD;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}
+
 /* SHIFT TABS */
-.shift-tabs{display:flex;gap:6px;margin-bottom:14px}
-.stab{padding:6px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:inherit;transition:all .15s}
+.shift-tabs{display:flex;gap:6px;margin-bottom:12px}
+.stab{flex:1;padding:10px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border2);background:#111827;color:var(--text2);font-family:inherit;transition:all .15s;text-align:center}
 .stab.active{background:linear-gradient(135deg,#1E3A5F,#1A2D4A);border-color:#3B82F6;color:#93C5FD}
-/* SHIFT STATS */
-.shift-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
-.ss{background:#111827;border:1px solid var(--border2);border-radius:10px;padding:10px 12px;text-align:center}
-.ss-num{font-size:18px;font-weight:700}
-.ss-lbl{font-size:10px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+
+/* SHIFT STATS GRID */
+.shift-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.ss{background:#111827;border:1px solid var(--border2);border-radius:10px;padding:10px 4px;text-align:center}
+.ss-num{font-size:16px;font-weight:700}
+.ss-lbl{font-size:9px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.02em;margin-top:2px}
 .ss.ward .ss-num{color:#3B82F6}
 .ss.unit .ss-num{color:#10B981}
 .ss.sup .ss-num{color:#8B5CF6}
 .ss.asst .ss-num{color:#F59E0B}
-/* HIERARCHY */
-.role-block{margin-bottom:10px;border:1px solid var(--border2);border-radius:14px;overflow:hidden}
-.role-hdr{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;user-select:none}
-.role-hdr.rh-ward{background:linear-gradient(90deg,rgba(59,130,246,.15),rgba(99,102,241,.08))}
-.role-hdr.rh-unit{background:linear-gradient(90deg,rgba(16,185,129,.15),rgba(5,150,105,.08))}
-.role-hdr.rh-sup{background:linear-gradient(90deg,rgba(139,92,246,.15),rgba(109,40,217,.08))}
-.role-hdr.rh-asst{background:linear-gradient(90deg,rgba(245,158,11,.12),rgba(217,119,6,.06))}
-.role-hdr.rh-other{background:rgba(30,45,69,.6)}
-.role-dot2{width:10px;height:10px;border-radius:50%}
+
+/* HIERARCHY ACCORDION */
+.role-block{margin-bottom:8px;border:1px solid var(--border2);border-radius:12px;overflow:hidden;background:#0E1420}
+.role-hdr{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+.role-hdr.rh-ward{background:linear-gradient(90deg,rgba(59,130,246,.12),rgba(99,102,241,.05))}
+.role-hdr.rh-unit{background:linear-gradient(90deg,rgba(16,185,129,.12),rgba(5,150,105,.05))}
+.role-hdr.rh-sup{background:linear-gradient(90deg,rgba(139,92,246,.12),rgba(109,40,217,.05))}
+.role-hdr.rh-asst{background:linear-gradient(90deg,rgba(245,158,11,.1),rgba(217,119,6,.04))}
+.role-dot2{width:8px;height:8px;border-radius:50%}
 .rd-ward{background:#3B82F6}
 .rd-unit{background:#10B981}
 .rd-sup{background:#8B5CF6}
 .rd-asst{background:#F59E0B}
-.rd-other{background:#64748B}
-.role-hdr-name{font-size:12px;font-weight:700;flex:1;text-transform:uppercase;letter-spacing:.06em}
+.role-hdr-name{font-size:12px;font-weight:700;flex:1;text-transform:uppercase;letter-spacing:.04em}
 .rh-ward .role-hdr-name{color:#93C5FD}
 .rh-unit .role-hdr-name{color:#6EE7B7}
 .rh-sup .role-hdr-name{color:#C4B5FD}
 .rh-asst .role-hdr-name{color:#FCD34D}
-.rh-other .role-hdr-name{color:var(--text2)}
-.role-count-tag{background:rgba(255,255,255,.06);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text2)}
-.chevron{font-size:12px;color:var(--text3);transition:transform .2s}
+.role-count-tag{background:rgba(255,255,255,.08);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text1)}
+.chevron{font-size:10px;color:var(--text3);transition:transform .2s;margin-left:4px}
 .chevron.open{transform:rotate(90deg)}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;padding:12px;background:#0E1420}
+
+/* MOBILE CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:8px}
+@media(max-width:380px){.cards-grid{grid-template-columns:1fr}}
+
 /* STAFF CARD */
-.scard{background:#111827;border:1px solid var(--border2);border-radius:12px;padding:12px;transition:all .15s;position:relative;overflow:hidden}
-.scard:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,.4)}
-.scard-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.av{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.scard{background:#111827;border:1px solid var(--border2);border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:between}
+.scard-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.av{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
 .av-ward{background:rgba(59,130,246,.2);color:#93C5FD}
 .av-unit{background:rgba(16,185,129,.2);color:#6EE7B7}
 .av-sup{background:rgba(139,92,246,.2);color:#C4B5FD}
 .av-asst{background:rgba(245,158,11,.2);color:#FCD34D}
 .av-sr{background:rgba(236,72,153,.2);color:#F9A8D4}
-.av-other{background:rgba(100,116,139,.2);color:#94A3B8}
-.scard-name{font-size:12px;font-weight:700;color:var(--text1);line-height:1.3}
-.scard-shift{font-size:10px;color:var(--text3);margin-top:2px;font-weight:600}
-.scard-contact{font-size:12px;color:#60A5FA;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:5px}
-.scard-actions{display:flex;gap:5px}
-.act-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .15s;font-family:inherit}
-.act-btn.call{background:rgba(16,185,129,.12);color:#10B981;border:1px solid rgba(16,185,129,.25)}
-.act-btn.call:hover{background:rgba(16,185,129,.25)}
-.act-btn.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.25)}
-.act-btn.wa:hover{background:rgba(37,211,102,.25)}
+.scard-name{font-size:12px;font-weight:700;color:var(--text1);line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:28px}
+.scard-shift{font-size:10px;color:var(--text3);margin-top:1px;font-weight:600}
+.scard-contact{font-size:11px;color:#60A5FA;font-weight:600;margin-bottom:8px;text-align:center;background:rgba(30,41,59,0.5);padding:3px;border-radius:4px}
+.scard-actions{display:flex;gap:4px;width:100%}
+.act-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 4px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;text-decoration:none;border:none;font-family:inherit}
+.act-btn.call{background:rgba(16,185,129,.15);color:#10B981;border:1px solid rgba(16,185,129,0.2)}
+.act-btn.wa{background:rgba(37,211,102,.15);color:#25D366;border:1px solid rgba(37,211,102,0.2)}
 .hidden{display:none!important}
-.empty-msg{padding:24px;text-align:center;color:var(--text3);font-size:13px}
+.empty-msg{padding:20px;text-align:center;color:var(--text3);font-size:12px;grid-column:span 2}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h2 class="sr-only">Sumeet Elko White Coller Details</h2>
+<h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Sumeet Elko White Collar Details</h2>
 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="logo-wrap">
-    <div class="logo-icon">🧑🏻‍💼</div>
+    <div class="logo-icon">💼</div>
     <div class="logo-text">
       <h1>Depot Staff Dashboard</h1>
-      <p>Ward D → J &nbsp;·&nbsp; Shift A / B / C</p>
+      <p>Ward D to J · Shift A / B / C / G</p>
     </div>
   </div>
   <div class="topbar-right">
@@ -163,18 +162,20 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0B0F1A;color:#E2E8F0
 <!-- STATS -->
 <div class="stats-row" id="stats-row"></div>
 
-<!-- CONTROLS -->
+<!-- STICKY SEARCH -->
 <div class="controls">
   <div class="search-box">
     <span class="search-icon">🔍</span>
-    <input type="text" id="search" placeholder="Search name or number..." oninput="doSearch(this.value)">
+    <input type="text" id="search" placeholder="Search by name or number..." oninput="doSearch(this.value)">
   </div>
 </div>
 
-<!-- WARD TABS -->
-<div class="ward-row" id="ward-row"></div>
+<!-- SCROLLABLE WARD TABS -->
+<div class="scroll-tabs-wrap">
+  <div class="ward-row" id="ward-row"></div>
+</div>
 
-<!-- PANELS -->
+<!-- PANELS CONTAINER -->
 <div id="panels"></div>
 </div>
 
@@ -289,107 +290,95 @@ const data=[
 ];
 
 const VIP_ROLES=["SR. MANAGER OPERATIONS","ASSISTANT MANAGER OPERATIONS","ASSISTANT ZONAL MANAGER","EXECUTIVE OPERATIONS"];
-const VIP_CLASS={
-  "SR. MANAGER OPERATIONS":"sr",
-  "ASSISTANT MANAGER OPERATIONS":"amo",
-  "ASSISTANT ZONAL MANAGER":"azm",
-  "EXECUTIVE OPERATIONS":"eo"
-};
-const VIP_LABEL={
-  "SR. MANAGER OPERATIONS":"Sr. Manager Operations",
-  "ASSISTANT MANAGER OPERATIONS":"Asst. Manager Operations",
-  "ASSISTANT ZONAL MANAGER":"Asst. Zonal Manager",
-  "EXECUTIVE OPERATIONS":"Executive Operations"
-};
+const VIP_CLASS={"SR. MANAGER OPERATIONS":"sr","ASSISTANT MANAGER OPERATIONS":"amo","ASSISTANT ZONAL MANAGER":"azm","EXECUTIVE OPERATIONS":"eo"};
+const VIP_LABEL={"SR. MANAGER OPERATIONS":"Sr. Manager","ASSISTANT MANAGER OPERATIONS":"Asst. Manager","ASSISTANT ZONAL MANAGER":"Asst. Zonal Mgr","EXECUTIVE OPERATIONS":"Executive Ops"};
 
 const ROLE_ORDER=["WARD OFFICER","SR. MANAGER OPERATIONS","EXECUTIVE OPERATIONS","ASSISTANT ZONAL MANAGER","CLUSTER MANAGER","ASSISTANT MANAGER OPERATIONS","UNIT OFFICER","SUPERVISOR","ASSISTANT SUPERVISOR"];
-const ROLE_LABEL={
-  "WARD OFFICER":"Ward Officer","SR. MANAGER OPERATIONS":"Sr. Manager Operations",
-  "EXECUTIVE OPERATIONS":"Executive Operations","ASSISTANT ZONAL MANAGER":"Asst. Zonal Manager",
-  "CLUSTER MANAGER":"Cluster Manager","ASSISTANT MANAGER OPERATIONS":"Asst. Manager Operations",
-  "UNIT OFFICER":"Unit Officer","SUPERVISOR":"Supervisor","ASSISTANT SUPERVISOR":"Asst. Supervisor"
-};
-const ROLE_HDR={
-  "WARD OFFICER":"rh-ward","SR. MANAGER OPERATIONS":"rh-ward","EXECUTIVE OPERATIONS":"rh-ward",
-  "ASSISTANT ZONAL MANAGER":"rh-ward","CLUSTER MANAGER":"rh-ward","ASSISTANT MANAGER OPERATIONS":"rh-ward",
-  "UNIT OFFICER":"rh-unit","SUPERVISOR":"rh-sup","ASSISTANT SUPERVISOR":"rh-asst"
-};
-const ROLE_DOT={
-  "WARD OFFICER":"rd-ward","SR. MANAGER OPERATIONS":"rd-ward","EXECUTIVE OPERATIONS":"rd-ward",
-  "ASSISTANT ZONAL MANAGER":"rd-ward","CLUSTER MANAGER":"rd-ward","ASSISTANT MANAGER OPERATIONS":"rd-ward",
-  "UNIT OFFICER":"rd-unit","SUPERVISOR":"rd-sup","ASSISTANT SUPERVISOR":"rd-asst"
-};
-const ROLE_AV={
-  "WARD OFFICER":"av-ward","SR. MANAGER OPERATIONS":"av-sr","EXECUTIVE OPERATIONS":"av-sr",
-  "ASSISTANT ZONAL MANAGER":"av-sr","CLUSTER MANAGER":"av-sr","ASSISTANT MANAGER OPERATIONS":"av-ward",
-  "UNIT OFFICER":"av-unit","SUPERVISOR":"av-sup","ASSISTANT SUPERVISOR":"av-asst"
-};
+const ROLE_LABEL={"WARD OFFICER":"Ward Officer","SR. MANAGER OPERATIONS":"Sr. Manager","EXECUTIVE OPERATIONS":"Executive Ops","ASSISTANT ZONAL MANAGER":"Asst. Zonal Mgr","CLUSTER MANAGER":"Cluster Manager","ASSISTANT MANAGER OPERATIONS":"Asst. Manager","UNIT OFFICER":"Unit Officer","SUPERVISOR":"Supervisor","ASSISTANT SUPERVISOR":"Asst. Supervisor"};
+const ROLE_HDR={"WARD OFFICER":"rh-ward","SR. MANAGER OPERATIONS":"rh-ward","EXECUTIVE OPERATIONS":"rh-ward","ASSISTANT ZONAL MANAGER":"rh-ward","CLUSTER MANAGER":"rh-ward","ASSISTANT MANAGER OPERATIONS":"rh-ward","UNIT OFFICER":"rh-unit","SUPERVISOR":"rh-sup","ASSISTANT SUPERVISOR":"rh-asst"};
+const ROLE_DOT={"WARD OFFICER":"rd-ward","SR. MANAGER OPERATIONS":"rd-ward","EXECUTIVE OPERATIONS":"rd-ward","ASSISTANT ZONAL MANAGER":"rd-ward","CLUSTER MANAGER":"rd-ward","ASSISTANT MANAGER OPERATIONS":"rd-ward","UNIT OFFICER":"rd-unit","SUPERVISOR":"rd-sup","ASSISTANT SUPERVISOR":"rd-asst"};
+const ROLE_AV={"WARD OFFICER":"av-ward","SR. MANAGER OPERATIONS":"av-sr","EXECUTIVE OPERATIONS":"av-sr","ASSISTANT ZONAL MANAGER":"av-sr","CLUSTER MANAGER":"av-sr","ASSISTANT MANAGER OPERATIONS":"av-ward","UNIT OFFICER":"av-unit","SUPERVISOR":"av-sup","ASSISTANT SUPERVISOR":"av-asst"};
+
+let curWard='ALL';
+const wards=[...new Set(data.map(r=>r.w))].sort();
+let curShift={};
+wards.forEach(w=>curShift[w]='ALL');
 
 function initials(n){const p=n.trim().split(' ');return(p[0][0]+(p[1]?p[1][0]:'')).toUpperCase()}
 
-function actionBtns(c){
-  return `<a class="act-btn call" href="tel:+91${c}">📞 Call</a>
-          <a class="act-btn wa" href="https://wa.me/91${c}" target="_blank">💬 WhatsApp</a>`;
-}
-
 function buildVIP(){
   const vips=data.filter(p=>VIP_ROLES.includes(p.d));
-  if(!vips.length)return;
-  const el=document.getElementById('vip-strip');
-  el.innerHTML=vips.map(p=>`
+  document.getElementById('vip-strip').innerHTML=vips.map(p=>`
     <div class="vip-card ${VIP_CLASS[p.d]||''}">
-      <div class="vip-role">${VIP_LABEL[p.d]||p.d}</div>
-      <div class="vip-name">${p.n}</div>
-      <div style="font-size:11px;color:#60A5FA;font-weight:600;margin-bottom:8px">📞 ${p.c}</div>
+      <div>
+        <div class="vip-role">${VIP_LABEL[p.d]||p.d}</div>
+        <div class="vip-name">${p.n.split(' ').slice(0,2).join(' ')}</div>
+      </div>
       <div class="vip-actions">
         <a class="vip-btn call" href="tel:+91${p.c}">📞 Call</a>
-        <a class="vip-btn wa" href="https://wa.me/91${p.c}" target="_blank">💬 WhatsApp</a>
+        <a class="vip-btn wa" href="https://wa.me/91${p.c}" target="_blank">💬 WA</a>
       </div>
     </div>`).join('');
 }
 
 function buildStats(){
-  const el=document.getElementById('stats-row');
-  const wards=[...new Set(data.map(r=>r.w))].length;
+  const uniqueWards=wards.length;
   const sups=data.filter(r=>r.d==="SUPERVISOR").length;
   const units=data.filter(r=>r.d==="UNIT OFFICER").length;
-  el.innerHTML=`
+  document.getElementById('stats-row').innerHTML=`
     <div class="stat-box"><div class="stat-num">${data.length}</div><div class="stat-lbl">Total Staff</div></div>
-    <div class="stat-box"><div class="stat-num">${wards}</div><div class="stat-lbl">Wards</div></div>
-    <div class="stat-box"><div class="stat-num">${sups}</div><div class="stat-lbl">Supervisors</div></div>
-    <div class="stat-box"><div class="stat-num">${units}</div><div class="stat-lbl">Unit Officers</div></div>`;
+    <div class="stat-box"><div class="stat-num">${uniqueWards}</div><div class="stat-lbl">Active Wards</div></div>
+    <div class="stat-box"><div class="stat-num">${units}</div><div class="stat-lbl">Unit Officers</div></div>
+    <div class="stat-box"><div class="stat-num">${sups}</div><div class="stat-lbl">Supervisors</div></div>`;
 }
-
-const wards=[...new Set(data.map(r=>r.w))].sort();
-const shifts=[...new Set(data.map(r=>r.sh))].sort();
-let curShift={};
-wards.forEach(w=>curShift[w]='ALL');
 
 function staffCard(p){
   const av=ROLE_AV[p.d]||'av-other';
   return `<div class="scard" data-name="${p.n.toLowerCase()}" data-c="${p.c}">
     <div class="scard-top">
       <div class="av ${av}">${initials(p.n)}</div>
-      <div><div class="scard-name">${p.n.split(' ').slice(0,2).join(' ')}</div>
-      <div class="scard-shift">Shift ${p.sh}</div></div>
+      <div>
+        <div class="scard-name">${p.n.split(' ').slice(0,2).join(' ')}</div>
+        <div class="scard-shift">Shift ${p.sh} (Ward ${p.w})</div>
+      </div>
     </div>
     <div class="scard-contact">📞 ${p.c}</div>
-    <div class="scard-actions">${actionBtns(p.c)}</div>
+    <div class="scard-actions">
+      <a class="act-btn call" href="tel:+91${p.c}">📞 Call</a>
+      <a class="act-btn wa" href="https://wa.me/91${p.c}" target="_blank">💬 WA</a>
+    </div>
   </div>`;
 }
 
-function shiftStats(wardData,sh){
-  const d=sh==='ALL'?wardData:wardData.filter(p=>p.sh===sh);
-  const wo=d.filter(p=>p.d==="WARD OFFICER").length;
-  const uo=d.filter(p=>p.d==="UNIT OFFICER").length;
-  const su=d.filter(p=>p.d==="SUPERVISOR").length;
-  const as=d.filter(p=>p.d==="ASSISTANT SUPERVISOR").length;
-  return `<div class="shift-stats">
-    <div class="ss ward"><div class="ss-num">${wo}</div><div class="ss-lbl">Ward Officer</div></div>
-    <div class="ss unit"><div class="ss-num">${uo}</div><div class="ss-lbl">Unit Officer</div></div>
-    <div class="ss sup"><div class="ss-num">${su}</div><div class="ss-lbl">Supervisor</div></div>
-    <div class="ss asst"><div class="ss-num">${as}</div><div class="ss-lbl">Asst. Sup</div></div>
-  </div>`;
+function getShiftStatsHtml(filteredData){
+  return `
+    <div class="ss ward"><div class="ss-num">${filteredData.filter(p=>p.d==="WARD OFFICER").length}</div><div class="ss-lbl">Ward Off.</div></div>
+    <div class="ss unit"><div class="ss-num">${filteredData.filter(p=>p.d==="UNIT OFFICER").length}</div><div class="ss-lbl">Unit Off.</div></div>
+    <div class="ss sup"><div class="ss-num">${filteredData.filter(p=>p.d==="SUPERVISOR").length}</div><div class="ss-lbl">Supervisor</div></div>
+    <div class="ss asst"><div class="ss-num">${filteredData.filter(p=>p.d==="ASSISTANT SUPERVISOR").length}</div><div class="ss-lbl">Asst. Sup</div></div>`;
+}
+
+function buildHierarchyHtml(filtered, prefixId){
+  const byRole={};
+  filtered.forEach(p=>{if(!byRole[p.d])byRole[p.d]=[];byRole[p.d].push(p);});
+  const ordered=ROLE_ORDER.filter(r=>byRole[r]);
+
+  if(!ordered.length) return `<div class="empty-msg">No staff configuration matches this filter.</div>`;
+
+  return ordered.map(role=>{
+    const hdr=ROLE_HDR[role]||'rh-other';
+    const dot=ROLE_DOT[role]||'rd-other';
+    const id=`rb-${prefixId}-${role.replace(/\s/g,'_')}`;
+    return `<div class="role-block">
+      <div class="role-hdr ${hdr}" onclick="toggleBlock('${id}')">
+        <span class="role-dot2 ${dot}"></span>
+        <span class="role-hdr-name">${ROLE_LABEL[role]||role}</span>
+        <span class="role-count-tag">${byRole[role].length}</span>
+        <span class="chevron open" id="chev-${id}">▶</span>
+      </div>
+      <div class="cards-grid" id="${id}">${byRole[role].map(staffCard).join('')}</div>
+    </div>`;
+  }).join('');
 }
 
 function buildPanel(w){
@@ -397,137 +386,87 @@ function buildPanel(w){
   const wardShifts=[...new Set(wardData.map(r=>r.sh))].sort();
   const sh=curShift[w];
   const filtered=sh==='ALL'?wardData:wardData.filter(p=>p.sh===sh);
-  const byRole={};
-  filtered.forEach(p=>{if(!byRole[p.d])byRole[p.d]=[];byRole[p.d].push(p);});
-  const ordered=ROLE_ORDER.filter(r=>byRole[r]);
 
   const shiftTabsHtml=['ALL',...wardShifts].map(s=>`
-    <button class="stab ${sh===s?'active':''}" onclick="setShift('${w}','${s}',this)">${s==='ALL'?'All Shifts':'Shift '+s}</button>`).join('');
-
-  const hierarchyHtml=ordered.length?ordered.map(role=>{
-    const hdr=ROLE_HDR[role]||'rh-other';
-    const dot=ROLE_DOT[role]||'rd-other';
-    const id=`rb-${w}-${role.replace(/\s/g,'_')}`;
-    return `<div class="role-block">
-      <div class="role-hdr ${hdr}" onclick="toggleBlock('${id}')">
-        <span class="role-dot2 ${dot}"></span>
-        <span class="role-hdr-name">${ROLE_LABEL[role]||role}</span>
-        <span class="role-count-tag">${byRole[role].length}</span>
-        <span class="chevron open" id="chev-${id}">▶</span>
-      </div>
-      <div class="cards-grid" id="${id}">${byRole[role].map(staffCard).join('')}</div>
-    </div>`;
-  }).join(''):`<div class="empty-msg">No staff found for this shift.</div>`;
+    <button class="stab ${sh===s?'active':''}" onclick="setShift('${w}','${s}',this)">${s==='ALL'?'All':s}</button>`).join('');
 
   return `<div class="ward-panel ${curWard===w?'active':''}" id="panel-${w}">
     <div class="ward-info-bar">
-      <div class="ward-title">Ward ${w}</div>
-      <div class="ward-count-badge">${wardData.length} Total Staff</div>
+      <div class="ward-title">Ward ${w} Overview</div>
+      <div class="ward-count-badge">${wardData.length} Total</div>
     </div>
     <div class="shift-tabs">${shiftTabsHtml}</div>
-    ${shiftStats(wardData,sh)}
-    <div class="hierarchy">${hierarchyHtml}</div>
+    <div class="shift-stats">${getShiftStatsHtml(filtered)}</div>
+    <div class="hierarchy">${buildHierarchyHtml(filtered, w)}</div>
   </div>`;
 }
 
 function setShift(w,sh,btn){
   curShift[w]=sh;
-  btn.closest('.ward-panel').querySelector('.shift-tabs').querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
+  btn.parentNode.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  
   const panel=document.getElementById('panel-'+w);
-  const old=panel.querySelector('.hierarchy');
-  const stats=panel.querySelector('.shift-stats');
   const wardData=data.filter(r=>r.w===w);
   const filtered=sh==='ALL'?wardData:wardData.filter(p=>p.sh===sh);
-  const byRole={};
-  filtered.forEach(p=>{if(!byRole[p.d])byRole[p.d]=[];byRole[p.d].push(p);});
-  const ordered=ROLE_ORDER.filter(r=>byRole[r]);
-  const hierarchyHtml=ordered.length?ordered.map(role=>{
-    const hdr=ROLE_HDR[role]||'rh-other';
-    const dot=ROLE_DOT[role]||'rd-other';
-    const id=`rb-${w}-${sh}-${role.replace(/\s/g,'_')}`;
-    return `<div class="role-block">
-      <div class="role-hdr ${hdr}" onclick="toggleBlock('${id}')">
-        <span class="role-dot2 ${dot}"></span>
-        <span class="role-hdr-name">${ROLE_LABEL[role]||role}</span>
-        <span class="role-count-tag">${byRole[role].length}</span>
-        <span class="chevron open" id="chev-${id}">▶</span>
-      </div>
-      <div class="cards-grid" id="${id}">${byRole[role].map(staffCard).join('')}</div>
-    </div>`;
-  }).join(''):`<div class="empty-msg">No staff found for this shift.</div>`;
-  old.innerHTML=hierarchyHtml;
-  const wo=filtered.filter(p=>p.d==="WARD OFFICER").length;
-  const uo=filtered.filter(p=>p.d==="UNIT OFFICER").length;
-  const su=filtered.filter(p=>p.d==="SUPERVISOR").length;
-  const as=filtered.filter(p=>p.d==="ASSISTANT SUPERVISOR").length;
-  stats.innerHTML=`
-    <div class="ss ward"><div class="ss-num">${wo}</div><div class="ss-lbl">Ward Officer</div></div>
-    <div class="ss unit"><div class="ss-num">${uo}</div><div class="ss-lbl">Unit Officer</div></div>
-    <div class="ss sup"><div class="ss-num">${su}</div><div class="ss-lbl">Supervisor</div></div>
-    <div class="ss asst"><div class="ss-num">${as}</div><div class="ss-lbl">Asst. Sup</div></div>`;
+  
+  panel.querySelector('.shift-stats').innerHTML=getShiftStatsHtml(filtered);
+  panel.querySelector('.hierarchy').innerHTML=buildHierarchyHtml(filtered, w);
 }
 
 function toggleBlock(id){
   const el=document.getElementById(id);
   const chev=document.getElementById('chev-'+id);
-  const hidden=el.style.display==='none';
-  el.style.display=hidden?'':'none';
-  chev.classList.toggle('open',hidden);
+  const isHidden=el.style.display==='none';
+  el.style.display=isHidden?'':'none';
+  chev.classList.toggle('open',isHidden);
 }
 
-let curWard='ALL';
 function switchWard(w,btn){
   curWard=w;
   document.querySelectorAll('.wtab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.ward-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+w).classList.add('active');
+  
+  // Reset search box on tab switch to avoid confusion
+  document.getElementById('search').value='';
+  doSearch('');
 }
 
 function buildWardTabs(){
-  const el=document.getElementById('ward-row');
-  el.innerHTML=`<button class="wtab active" onclick="switchWard('ALL',this)">🏠 All</button>`+
+  document.getElementById('ward-row').innerHTML=`<button class="wtab active" onclick="switchWard('ALL',this)">🏠 All Wards</button>`+
     wards.map(w=>`<button class="wtab" onclick="switchWard('${w}',this)">Ward ${w}</button>`).join('');
 }
 
 function buildAllPanels(){
-  curWard='ALL';
   const el=document.getElementById('panels');
   const allPanel=`<div class="ward-panel active" id="panel-ALL">
-    <div class="ward-info-bar"><div class="ward-title">All Wards Overview</div><div class="ward-count-badge">${data.length} Staff</div></div>
-    <div class="shift-stats">
-      <div class="ss ward"><div class="ss-num">${data.filter(p=>p.d==="WARD OFFICER").length}</div><div class="ss-lbl">Ward Officer</div></div>
-      <div class="ss unit"><div class="ss-num">${data.filter(p=>p.d==="UNIT OFFICER").length}</div><div class="ss-lbl">Unit Officer</div></div>
-      <div class="ss sup"><div class="ss-num">${data.filter(p=>p.d==="SUPERVISOR").length}</div><div class="ss-lbl">Supervisor</div></div>
-      <div class="ss asst"><div class="ss-num">${data.filter(p=>p.d==="ASSISTANT SUPERVISOR").length}</div><div class="ss-lbl">Asst. Sup</div></div>
+    <div class="ward-info-bar">
+      <div class="ward-title">All Wards Combined</div>
+      <div class="ward-count-badge">${data.length} Total Staff</div>
     </div>
-    <div class="hierarchy">${ROLE_ORDER.filter(r=>data.some(p=>p.d===r)).map(role=>{
-      const members=data.filter(p=>p.d===role);
-      const hdr=ROLE_HDR[role]||'rh-other';
-      const dot=ROLE_DOT[role]||'rd-other';
-      const id='rb-ALL-'+role.replace(/\s/g,'_');
-      return `<div class="role-block">
-        <div class="role-hdr ${hdr}" onclick="toggleBlock('${id}')">
-          <span class="role-dot2 ${dot}"></span>
-          <span class="role-hdr-name">${ROLE_LABEL[role]||role}</span>
-          <span class="role-count-tag">${members.length}</span>
-          <span class="chevron open" id="chev-${id}">▶</span>
-        </div>
-        <div class="cards-grid" id="${id}">${members.map(staffCard).join('')}</div>
-      </div>`;
-    }).join('')}</div>
+    <div class="shift-stats">${getShiftStatsHtml(data)}</div>
+    <div class="hierarchy">${buildHierarchyHtml(data, 'ALL')}</div>
   </div>`;
   el.innerHTML=allPanel+wards.map(w=>buildPanel(w)).join('');
 }
 
 function doSearch(q){
-  const qu=q.toLowerCase();
+  const qu=q.toLowerCase().trim();
   document.querySelectorAll('.scard').forEach(c=>{
-    c.classList.toggle('hidden',!c.dataset.name.includes(qu)&&!c.dataset.c.includes(qu));
+    const match=!qu || c.dataset.name.includes(qu) || c.dataset.c.includes(qu);
+    c.classList.toggle('hidden',!match);
+  });
+  
+  // Dynamic header visibility checking
+  document.querySelectorAll('.role-block').forEach(b=>{
+    const cards=b.querySelectorAll('.scard:not(.hidden)');
+    b.classList.toggle('hidden',cards.length===0);
   });
 }
 
+// Init Setup
 buildVIP();
 buildStats();
 buildWardTabs();
